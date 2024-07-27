@@ -19,10 +19,10 @@ namespace API.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<Core.Entities.Note>>> GetNotes()
+        public async Task<ActionResult<List<Core.Entities.Note>>> GetNotes(string sort)
         {
-            var notes = await _repo.GetAllNotesAsync();
-            if (notes == null) return NotFound(new ApiResponse(404));
+            var notes = await _repo.GetAllNotesAsync(sort);
+            if (notes == null || !notes.Any()) return NotFound(new ApiResponse(404));
             return Ok(notes);
         }
     

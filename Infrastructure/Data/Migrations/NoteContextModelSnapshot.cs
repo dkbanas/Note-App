@@ -29,6 +29,9 @@ namespace Infrastructure.Data.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<long>("CreatedDate")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 

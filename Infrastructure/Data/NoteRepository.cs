@@ -23,8 +23,38 @@ public class NoteRepository : INoteRepository
         return note;
     }
 
-    public async Task<IReadOnlyList<Note>> GetAllNotesAsync()
+    public async Task<IReadOnlyList<Note>> GetAllNotesAsync(string sort)
     {
-        return await _noteContext.Notes.ToListAsync();
+        var query = _noteContext.Notes.AsQueryable();
+
+        if (!string.IsNullOrEmpty(sort))
+        {
+            switch (sort?.ToLower())
+            {
+                case "alphabetically":
+                    query = query.OrderBy(n => n.Title);
+                    break;
+                case "alphabetically-reverse":
+                    query = query.OrderByDescending(n => n.Title);
+                    break;
+                case "date":
+                    query = query.OrderBy(n => n.CreatedDate);
+                    break;
+                case "date-reverse":
+                    query = query.OrderByDescending(n => n.CreatedDate);
+                    break;
+                default:
+                    query = query.OrderBy(n => n.CreatedDate);
+                    break;
+            }
+        }
+        else
+        {
+            query = query.OrderBy(n => n.CreatedDate);
+        }
+
+
+        return await query.ToListAsync();
+        // return await _noteContext.Notes.ToListAsync();
     }
 }

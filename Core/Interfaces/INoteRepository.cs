@@ -5,5 +5,5 @@ namespace Core.Interfaces;
 public interface INoteRepository
 {
     Task<Note> GetNotebyIdAsync(int id);
-    Task<IReadOnlyList<Note>> GetAllNotesAsync();
+    Task<IReadOnlyList<Note>> GetAllNotesAsync(string sort);
 }
