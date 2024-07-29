@@ -1,4 +1,5 @@
 using API.Errors;
+using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +19,21 @@ namespace API.Controllers
         
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<Core.Entities.Note>>> GetNotes(string sort)
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<Pagination<Core.Entities.Note>>> GetNotes(int pageIndex = 1, int pageSize = 10, string sort = null)
         {
-            var notes = await _repo.GetAllNotesAsync(sort);
+            var totalItems = await _repo.CountAsync();
+            var notes = await _repo.GetAllNotesAsync(pageIndex, pageSize, sort);
             if (notes == null || !notes.Any()) return NotFound(new ApiResponse(404));
-            return Ok(notes);
+
+            var paginationData = new Pagination<Core.Entities.Note>(
+                pageIndex,
+                pageSize,
+                totalItems,
+                notes
+            );
+
+            return Ok(paginationData);
         }
     
         [HttpGet("{id}")]

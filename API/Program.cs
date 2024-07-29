@@ -9,6 +9,16 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "CorsPolicy",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
+// Add services to the container.
 
 builder.Services.AddControllers();
 
@@ -58,6 +68,7 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
 app.UseHttpsRedirection();
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
