@@ -5,6 +5,6 @@ namespace Core.Interfaces;
 public interface INoteRepository
 {
     Task<Note> GetNotebyIdAsync(int id);
-    Task<IReadOnlyList<Note>> GetAllNotesAsync(int pageIndex, int pageSize,string sort);
+    Task<IReadOnlyList<Note>> GetAllNotesAsync(int pageIndex, int pageSize,string sort,string search);
     Task<int> CountAsync();
 }

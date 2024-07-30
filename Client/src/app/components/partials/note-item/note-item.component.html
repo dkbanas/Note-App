@@ -1,0 +1,13 @@
+<div class="card h-100 box-shadow">
+  <div class="card-body">
+    <h5 class="card-title">{{note.title}}</h5>
+    <p class="card-text">{{note.description}}</p>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="btn-group">
+        <button routerLink="/Note/{{note.id}}" type="button" class="btn btn-sm btn-outline-secondary">View</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+      </div>
+      <small class="text-muted">{{timeAgo(note.createdDate)}}</small>
+    </div>
+  </div>
+</div>

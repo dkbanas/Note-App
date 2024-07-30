@@ -23,9 +23,14 @@ public class NoteRepository : INoteRepository
         return note;
     }
 
-    public async Task<IReadOnlyList<Note>> GetAllNotesAsync(int pageIndex, int pageSize, string sort)
+    public async Task<IReadOnlyList<Note>> GetAllNotesAsync(int pageIndex, int pageSize, string sort,string search = null)
     {
         var query = _noteContext.Notes.AsQueryable();
+        
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(n => n.Title.Contains(search));
+        }
 
         switch (sort?.ToLower())
         {

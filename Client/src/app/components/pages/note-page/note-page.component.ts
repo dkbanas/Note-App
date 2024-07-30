@@ -1,57 +1,75 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {INote} from "../../../models/INote";
 import {NotesService} from "../../../services/notes.service";
 import {NgForOf} from "@angular/common";
+import {NoteItemComponent} from "../../partials/note-item/note-item.component";
+import {noteParams} from "../../../models/noteParams";
+import {PaginationModule} from "ngx-bootstrap/pagination";
 
 @Component({
   selector: 'app-note-page',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    NoteItemComponent,
+    PaginationModule
   ],
   templateUrl: './note-page.component.html',
   styleUrl: './note-page.component.scss'
 })
 export class NotePageComponent {
+  @ViewChild('search',{static:true}) searchTerm!: ElementRef;
   notes!:INote[];
+  noteParams = new noteParams();
+  totalCount!: number;
+  sortOptions = [
+    {name:'Newest', value: 'date'},
+    {name:'Oldest', value: 'date-reverse'},
+    {name:'A-Z',value:'alphabetically'},
+    {name:'Z-A',value:'alphabetically-reverse'}
+  ];
 
   constructor(private notesService: NotesService ) {}
 
   ngOnInit() {
-    this.notesService.getNotes().subscribe({
-      next: (response) => this.notes = response.data,
-      error: (error) => console.error('There was an error!', error)
+    this.getNotes();
+  }
+
+  getNotes(){
+    this.notesService.getNotes(this.noteParams).subscribe({
+        next: (response) => {
+          this.notes = response!.data;
+          this.noteParams.pageNumber = response!.pageIndex;
+          this.noteParams.pageSize = response!.pageSize;
+          this.totalCount = response!.count;
+
+          },
+        error: (error) => console.error('There was an error!', error)
       }
     )
   }
 
-  timeAgo(dateString:string): string{
-    const now = new Date();
-    const pastDate = new Date(dateString);
-    const diffInMs = now.getTime() - pastDate.getTime();
-    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
-
-    if (diffInMinutes < 60) {
-      return `${diffInMinutes} min${diffInMinutes !== 1 ? 's' : ''} ago`;
-    }
-
-    const diffInHours = Math.floor(diffInMinutes / 60);
-    if (diffInHours < 24) {
-      return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
-    }
-
-    const diffInDays = Math.floor(diffInHours / 24);
-    if (diffInDays < 31) {
-      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
-    }
-
-    const diffInMonths = Math.floor(diffInDays / 30);
-    if (diffInMonths < 12) {
-      return `${diffInMonths} month${diffInMonths !== 1 ? 's' : ''} ago`;
-    }
-
-    const diffInYears = Math.floor(diffInMonths / 12);
-    return `${diffInYears} year${diffInYears !== 1 ? 's' : ''} ago`;
+  onSortSelected(sort:string){
+    this.noteParams.sortSelected = sort;
+    this.getNotes();
   }
+
+  onPageChange(event: any){
+    if(this.noteParams.pageNumber !== event){
+      this.noteParams.pageNumber = event.page;
+      this.getNotes();
+    }
+  }
+
+  onSearch(){
+    this.noteParams.search = this.searchTerm.nativeElement.value;
+    this.getNotes();
+  }
+
+  onReset(){
+    this.noteParams = new noteParams();
+    this.getNotes();
+  }
+
 
 }
