@@ -18,7 +18,7 @@ import {PaginationModule} from "ngx-bootstrap/pagination";
   styleUrl: './note-page.component.scss'
 })
 export class NotePageComponent {
-  @ViewChild('search',{static:true}) searchTerm!: ElementRef;
+  @ViewChild('search',{static:false}) searchTerm!: ElementRef;
   notes!:INote[];
   noteParams = new noteParams();
   totalCount!: number;

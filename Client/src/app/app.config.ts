@@ -4,6 +4,11 @@ import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import { routes } from './app.routes';
 import {loadingInterceptor} from "./interceptors/loading.interceptor";
 
+
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient()]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+    provideHttpClient()
+  ]
 };
