@@ -5,6 +5,7 @@ import {NavBarComponent} from "./components/partials/nav-bar/nav-bar.component";
 import {HttpClient} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {LoadingComponent} from "./components/partials/loading/loading.component";
+import {AccountService} from "./services/account.service";
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,7 +15,22 @@ import {LoadingComponent} from "./components/partials/loading/loading.component"
 })
 export class AppComponent {
   title = 'Note';
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient,private accountService: AccountService) { }
 
+  ngOnInit(){
+    this.loadCurrentUser();
+  }
+
+  loadCurrentUser() {
+    const token = localStorage.getItem('token');
+    this.accountService.loadCurrentUser(token).subscribe({
+      next: () => {
+        console.log('Loaded user');
+      },
+      error: err => {
+        console.log('Error loading user:', err);
+      }
+    });
+  }
 }
 

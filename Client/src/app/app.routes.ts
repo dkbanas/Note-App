@@ -4,10 +4,11 @@ import {NotePageComponent} from "./components/pages/note-page/note-page.componen
 import {NoteDetailsPageComponent} from "./components/pages/note-details-page/note-details-page.component";
 import {LoginPageComponent} from "./components/pages/login-page/login-page.component";
 import {RegisterPageComponent} from "./components/pages/register-page/register-page.component";
+import {authGuard} from "./guards/auth.guard";
 
 export const routes: Routes = [
   {path:'', component:HomePageComponent},
-  {path:'Note',component:NotePageComponent},
+  {path:'Note',component:NotePageComponent,canActivate:[authGuard]},
   {path:'Note/:id', component:NoteDetailsPageComponent},
   {path:'Account/Login',component:LoginPageComponent},
   {path:'Account/Register',component:RegisterPageComponent},

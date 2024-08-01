@@ -11,15 +11,15 @@ namespace Infrastructure.Services;
 
 public class TokenService : ITokenService
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration _config;
     private readonly SymmetricSecurityKey _key;
 
-    public TokenService(IConfiguration configuration)
+    public TokenService(IConfiguration config)
     {
-        _configuration = configuration;
-        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["TokenKey"]));
+        _config = config;
+        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]));
     }
-
+    
     public string CreateToken(IdentityUser user)
     {
         var claims = new List<Claim>
@@ -27,16 +27,14 @@ public class TokenService : ITokenService
             new Claim(JwtRegisteredClaimNames.Email, user.Email),
             new Claim(JwtRegisteredClaimNames.GivenName, user.UserName),
         };
-        
-        var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
+        var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.Now.AddDays(7),
+            Expires = DateTime.UtcNow.AddDays(7),
             SigningCredentials = creds,
-            Issuer = _configuration["TokenIssuer"],
+            Issuer = _config["Token:Issuer"],
         };
-
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);

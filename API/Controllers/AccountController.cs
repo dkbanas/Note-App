@@ -46,6 +46,10 @@ public class AccountController : ControllerBase
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
+        if (loginDto == null || string.IsNullOrEmpty(loginDto.Email) || string.IsNullOrEmpty(loginDto.Password))
+        {
+            return BadRequest(new ApiResponse(400, "Invalid login request"));
+        }
         var user = await _userManager.FindByEmailAsync(loginDto.Email);
         if(user == null) return Unauthorized(new ApiResponse(401));
         

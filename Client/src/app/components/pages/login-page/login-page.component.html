@@ -1,1 +1,33 @@
-<p>login-page works!</p>
+<div class="d-flex justify-content mt-4">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+
+    <div class="form-group">
+      <label for="inputEmail">Email address</label>
+      <input formControlName="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+      <span class="text-danger" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+        Email address is required
+      </span>
+      <span class="text-danger" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['pattern']">
+        Email is incorrect
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="inputPassword">Password</label>
+      <div class="input-group">
+        <input formControlName="password" [type]="passwordFieldType" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility()">
+            <i [class]="passwordFieldType === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+          </button>
+        </div>
+      </div>
+      <span class="text-danger" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+        Password is required
+      </span>
+    </div>
+
+    <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block mt-4 w-100" type="submit">Sign in</button>
+  </form>
+</div>

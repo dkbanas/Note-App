@@ -7,7 +7,13 @@
       <a class="p-2 text-dark" href="#">About</a>
       <a class="p-2 text-dark" href="#">Account</a>
     </nav>
-    <a routerLink="/Account/Login" class="btn btn-primary ms-3" href="#">Login</a>
-    <a routerLink="/Account/Register" class="btn btn-primary ms-3" href="#">Sign Up</a>
+    <ng-container *ngIf="(currentUser$ | async) === null">
+      <a routerLink="/Account/Login" class="btn btn-primary ms-3" href="#">Login</a>
+      <a routerLink="/Account/Register" class="btn btn-outline-primary ms-3" href="#">Sign Up</a>
+    </ng-container>
+    <ng-container *ngIf="(currentUser$ | async)">
+      <a class="btn btn-primary ms-3" href="#">Add note</a>
+      <a (click)=logout() class="btn btn-outline-primary ms-3" href="#">Logout</a>
+    </ng-container>
   </div>
 </div>

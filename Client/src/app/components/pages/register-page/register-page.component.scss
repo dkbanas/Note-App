@@ -1,0 +1,40 @@
+.form-signin {
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.form-signin .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group .form-control {
+  padding-right: 2.5rem;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.input-group {
+  position: relative;
+}
+.input-group-append {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+.input-group-append .btn {
+  z-index:999;
+}
+
+.text-danger {
+  display: block;
+  margin-top: 0.25rem;
+}
