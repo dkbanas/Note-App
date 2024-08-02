@@ -12,21 +12,28 @@ public class NoteRepository : INoteRepository
     {
         _noteContext = noteContext;
     }
-
-    public async Task<Note> GetNotebyIdAsync(int id)
+    public async Task<Note> CreateNoteAsync(Note note)
     {
-        var note = await _noteContext.Notes.FindAsync(id);
-        if (note == null)
-        {
-            throw new KeyNotFoundException($"Note with id {id} was not found.");
-        }
+        _noteContext.Notes.Add(note);
+        await _noteContext.SaveChangesAsync();
         return note;
     }
 
-    public async Task<IReadOnlyList<Note>> GetAllNotesAsync(int pageIndex, int pageSize, string sort,string search = null)
+
+    public async Task<Note> GetNoteByIdAsync(int id, string userEmail)
     {
-        var query = _noteContext.Notes.AsQueryable();
-        
+        var note = await _noteContext.Notes.FirstOrDefaultAsync(n => n.Id == id && n.UserEmail == userEmail);
+        if (note == null)
+        {
+            throw new KeyNotFoundException($"Note with id {id} was not found for user {userEmail}.");
+        }
+        return note;
+    }
+    
+    public async Task<IReadOnlyList<Note>> GetAllNotesAsync(int pageIndex, int pageSize, string userEmail, string sort, string search = null)
+    {
+        var query = _noteContext.Notes.Where(n => n.UserEmail == userEmail);
+
         if (!string.IsNullOrEmpty(search))
         {
             query = query.Where(n => n.Title.Contains(search));
@@ -53,8 +60,8 @@ public class NoteRepository : INoteRepository
         return await query.ToListAsync();
     }
 
-    public async Task<int> CountAsync()
+    public async Task<int> CountAsync(string userEmail)
     {
-        return await _noteContext.Notes.CountAsync();
+        return await _noteContext.Notes.CountAsync(n => n.UserEmail == userEmail);
     }
 }

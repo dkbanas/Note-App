@@ -2,51 +2,61 @@
   {
     "Id": 1,
     "Title": "Meeting Notes",
-    "Description": "Discuss project milestones and deliverables."
+    "Description": "Discuss project milestones and deliverables.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 2,
     "Title": "Shopping List",
-    "Description": "Milk, Bread, Eggs, Butter, Cheese."
+    "Description": "Milk, Bread, Eggs, Butter, Cheese.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 3,
     "Title": "Workout Plan",
-    "Description": "Monday: Chest and Triceps, Tuesday: Back and Biceps."
+    "Description": "Monday: Chest and Triceps, Tuesday: Back and Biceps.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 4,
     "Title": "Reading List",
-    "Description": "1. 'The Great Gatsby' by F. Scott Fitzgerald, 2. 'To Kill a Mockingbird' by Harper Lee."
+    "Description": "1. 'The Great Gatsby' by F. Scott Fitzgerald, 2. 'To Kill a Mockingbird' by Harper Lee.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 5,
     "Title": "Recipe",
-    "Description": "Pancakes: Flour, Eggs, Milk, Sugar, Baking Powder, Vanilla Extract."
+    "Description": "Pancakes: Flour, Eggs, Milk, Sugar, Baking Powder, Vanilla Extract.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 6,
     "Title": "Ideas for Blog",
-    "Description": "Write about the benefits of daily exercise and healthy eating."
+    "Description": "Write about the benefits of daily exercise and healthy eating.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 7,
     "Title": "Travel Itinerary",
-    "Description": "Day 1: Visit the Eiffel Tower, Day 2: Louvre Museum, Day 3: Notre Dame Cathedral."
+    "Description": "Day 1: Visit the Eiffel Tower, Day 2: Louvre Museum, Day 3: Notre Dame Cathedral.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 8,
     "Title": "Project Tasks",
-    "Description": "1. Design UI mockups, 2. Implement login functionality, 3. Write unit tests."
+    "Description": "1. Design UI mockups, 2. Implement login functionality, 3. Write unit tests.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 9,
     "Title": "Birthday Gift Ideas",
-    "Description": "1. Watch, 2. Perfume, 3. Book, 4. Jewelry."
+    "Description": "1. Watch, 2. Perfume, 3. Book, 4. Jewelry.",
+    "UserEmail": "test@test.com"
   },
   {
     "Id": 10,
     "Title": "Goals for the Year",
-    "Description": "1. Learn a new language, 2. Save money, 3. Travel to three new countries."
+    "Description": "1. Learn a new language, 2. Save money, 3. Travel to three new countries.",
+    "UserEmail": "test@test.com"
   }
 ]

@@ -33,12 +33,18 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

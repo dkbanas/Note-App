@@ -17,9 +17,10 @@ namespace Infrastructure.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    CreatedDate = table.Column<long>(type: "bigint", nullable: false)
+                    Title = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    CreatedDate = table.Column<long>(type: "bigint", nullable: false),
+                    UserEmail = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
