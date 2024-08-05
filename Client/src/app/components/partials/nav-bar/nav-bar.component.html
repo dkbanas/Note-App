@@ -12,8 +12,8 @@
       <a routerLink="/Account/Register" class="btn btn-outline-primary ms-3" href="#">Sign Up</a>
     </ng-container>
     <ng-container *ngIf="(currentUser$ | async)">
-      <a class="btn btn-primary ms-3" href="#">Add note</a>
-      <a (click)=logout() class="btn btn-outline-primary ms-3" href="#">Logout</a>
+      <a routerLink="/CreateNote" class="btn btn-primary ms-3">Add note</a>
+      <a (click)=logout() class="btn btn-outline-primary ms-3">Logout</a>
     </ng-container>
   </div>
 </div>

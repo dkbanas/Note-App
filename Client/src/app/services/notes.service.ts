@@ -4,6 +4,8 @@ import {IPagination} from "../models/IPagination";
 import {map, Observable} from "rxjs";
 import {noteParams} from "../models/noteParams";
 import {INote} from "../models/INote";
+import {INoteCreation} from "../models/INoteCreation";
+import {IUser} from "../models/IUser";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class NotesService {
   getNotes(noteParams: noteParams){
 
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}` // Adjust according to your token storage method
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     });
 
     let params = new HttpParams();
@@ -41,9 +43,26 @@ export class NotesService {
   getNote(id:number){
 
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}` // Adjust according to your token storage method
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     });
 
     return this.http.get<INote>(this.baseUrl + 'Notes/' + id,{ headers });
   }
+
+  createNote(values:any){
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
+
+    return this.http.post<INoteCreation>(this.baseUrl + 'Notes',values,{ headers });
+  }
+
+  deleteNote(id: number): Observable<void> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
+
+    return this.http.delete<void>(`${this.baseUrl}Notes/${id}`, { headers });
+  }
+
 }

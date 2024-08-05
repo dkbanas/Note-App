@@ -24,7 +24,7 @@ public class  NoteContext : DbContext
     {
         base.OnModelCreating( modelBuilder );
         modelBuilder.ApplyConfigurationsFromAssembly( Assembly.GetExecutingAssembly() );
-        
+        modelBuilder.UseSerialColumns();
         if (Database.ProviderName == "Npgsql.EntityFrameworkCore.PostgreSQL")
         {
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())

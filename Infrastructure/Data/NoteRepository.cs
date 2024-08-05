@@ -1,13 +1,13 @@
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Data;
 
 public class NoteRepository : INoteRepository
 {
     private readonly NoteContext _noteContext;
-
     public NoteRepository(NoteContext noteContext)
     {
         _noteContext = noteContext;
@@ -58,6 +58,36 @@ public class NoteRepository : INoteRepository
         query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
 
         return await query.ToListAsync();
+    }
+    
+    public async Task<bool> DeleteNoteAsync(int id, string userEmail)
+    {
+        var note = await _noteContext.Notes.FirstOrDefaultAsync(n => n.Id == id && n.UserEmail == userEmail);
+        if (note == null)
+        {
+            throw new KeyNotFoundException($"Note with id {id} for user {userEmail} not found.");
+        }
+
+        _noteContext.Notes.Remove(note);
+        await _noteContext.SaveChangesAsync();
+        return true;
+    }
+    
+    public async Task<Note> UpdateNoteAsync(Note note, string userEmail)
+    {
+        var existingNote = await _noteContext.Notes
+            .FirstOrDefaultAsync(n => n.Id == note.Id && n.UserEmail == userEmail);
+
+        if (existingNote == null)
+        {
+            throw new KeyNotFoundException($"Note with id {note.Id} for user {userEmail} not found.");
+        }
+
+        existingNote.Title = note.Title;
+        existingNote.Description = note.Description;
+        _noteContext.Notes.Update(existingNote);
+        await _noteContext.SaveChangesAsync();
+        return existingNote;
     }
 
     public async Task<int> CountAsync(string userEmail)

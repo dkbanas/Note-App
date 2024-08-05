@@ -145,7 +145,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<NoteContext>();
         await context.Database.MigrateAsync();
-        await NoteContextSeed.SeedAsync(context, loggerFactory);
+        // await NoteContextSeed.SeedAsync(context, loggerFactory);
         
         var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
         var identityContext = services.GetRequiredService<AppIdentityDbContext>();

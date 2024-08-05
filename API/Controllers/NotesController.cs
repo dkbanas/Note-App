@@ -1,3 +1,4 @@
+using API.DTO;
 using API.Errors;
 using API.Extensions;
 using API.Helpers;
@@ -50,17 +51,59 @@ namespace API.Controllers
             if (note == null) return NotFound(new ApiResponse(404));
             return Ok(note);
         }
-        
-        [HttpPost] 
+
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Core.Entities.Note>> CreateNote([FromBody] Note note)
+        public async Task<ActionResult<Core.Entities.Note>> CreateNote([FromBody] NoteForCreation noteDto)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
-            note.UserEmail = email;
+
+            var note = new Core.Entities.Note
+            {
+                Title = noteDto.Title,
+                Description = noteDto.Description,
+                CreatedDate = DateTime.UtcNow,
+                UserEmail = email
+            };
+            
+
+
             var createdNote = await _repo.CreateNoteAsync(note);
             if (createdNote == null) return BadRequest(new ApiResponse(400, "Problem creating note"));
-            return CreatedAtAction(nameof(GetNoteById), new { id = createdNote.Id }, createdNote);
+            return Ok(createdNote);
+        }
+        
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult> DeleteNoteById(int id)
+        {
+            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+            var deleted = await _repo.DeleteNoteAsync(id, email);
+            if (!deleted) return NotFound(new ApiResponse(404, "Note not found"));
+            return Ok(deleted);
+        }
+        
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult> UpdateNoteById(int id, [FromBody] NoteForCreation noteDto)
+        {
+            var email = HttpContext.User.RetrieveEmailFromPrincipal();
+
+            var existingNote = await _repo.GetNoteByIdAsync(id, email);
+            if (existingNote == null) return NotFound(new ApiResponse(404, "Note not found"));
+
+            existingNote.Title = noteDto.Title;
+            existingNote.Description = noteDto.Description;
+
+            var updatedNote = await _repo.UpdateNoteAsync(existingNote, email);
+            if (updatedNote == null) return BadRequest(new ApiResponse(400, "Problem updating note"));
+
+
+            return Ok(updatedNote);
         }
     }
 }

@@ -1,0 +1,51 @@
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 2rem;
+  border-bottom: 1px solid #e5e5e5
+}
+
+.form-row .name {
+  width: 15%;
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.form-row .value {
+  width: calc(100% - 15rem)
+}
+
+input,textarea {
+  width: 100%;
+}
+
+textarea {
+  resize: none
+}
+
+.input--style-6,.textarea--style-6 {
+  line-height: 2.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  transition: all .4s ease;
+  padding: 0 1rem;
+}
+
+textarea.textarea--style-6 {
+  height: 40rem;
+}
+
+
+
+.input--style-6:focus,.textarea--style-6:focus {
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,.15);
+  transform: translateY(-3px)
+}
+
+.card-6 .card-footer {
+  background: #fff;
+  border-top: none;
+  padding: 1rem 2rem 2rem 2rem;
+}
+
