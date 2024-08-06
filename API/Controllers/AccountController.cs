@@ -88,4 +88,51 @@ public class AccountController : ControllerBase
             Email = user.Email,
         };
     }
+    
+    [Authorize]
+    [HttpPut("updateUsername")]
+    public async Task<ActionResult> UpdateUser([FromBody] UpdateUserDto updateUserDto)
+    {
+        var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user == null) return NotFound();
+
+        user.UserName = updateUserDto.Username ?? user.UserName;
+
+        var result = await _userManager.UpdateAsync(user);
+        if (!result.Succeeded) return BadRequest(result.Errors);
+
+        return NoContent();
+    }
+
+    [Authorize]
+    [HttpPut("updatePassword")]
+    public async Task<ActionResult> UpdatePassword([FromBody] UpdatePasswordDto updatePasswordDto)
+    {
+        var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user == null) return NotFound();
+
+        var result = await _userManager.ChangePasswordAsync(user, updatePasswordDto.CurrentPassword, updatePasswordDto.NewPassword);
+        if (!result.Succeeded) return BadRequest(result.Errors);
+
+        return NoContent();
+    }
+
+    [Authorize]
+    [HttpDelete("delete")]
+    public async Task<ActionResult> DeleteAccount()
+    {
+        var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user == null) return NotFound();
+
+        var result = await _userManager.DeleteAsync(user);
+        if (!result.Succeeded) return BadRequest(result.Errors);
+
+        return NoContent();
+    }
 }

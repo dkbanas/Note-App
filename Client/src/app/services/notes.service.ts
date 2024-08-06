@@ -65,4 +65,13 @@ export class NotesService {
     return this.http.delete<void>(`${this.baseUrl}Notes/${id}`, { headers });
   }
 
+  updateNote(note: INote): Observable<INote> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.put<INote>(`${this.baseUrl}Notes/${note.id}`, note, { headers });
+  }
+
+
+
 }

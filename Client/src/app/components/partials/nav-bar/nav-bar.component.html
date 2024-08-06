@@ -2,14 +2,14 @@
   <h5 class="my-0 font-weight-normal">Note</h5>
   <div class="d-flex align-items-center ms-auto">
     <nav class="my-2 my-md-0">
-      <a class="p-2 text-dark" routerLink="/">Home</a>
-      <a class="p-2 text-dark" routerLink="Note">My notes</a>
-      <a class="p-2 text-dark" href="#">About</a>
-      <a class="p-2 text-dark" href="#">Account</a>
+      <a class="p-2 text-dark" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a class="p-2 text-dark" routerLink="Note" routerLinkActive="active-link">My notes</a>
+      <a class="p-2 text-dark" href="#" routerLinkActive="active-link">About</a>
+      <a class="p-2 text-dark" routerLink="/Account" routerLinkActive="active-link">Account</a>
     </nav>
     <ng-container *ngIf="(currentUser$ | async) === null">
-      <a routerLink="/Account/Login" class="btn btn-primary ms-3" href="#">Login</a>
-      <a routerLink="/Account/Register" class="btn btn-outline-primary ms-3" href="#">Sign Up</a>
+      <a routerLink="/Account/Login" class="btn btn-primary ms-3">Login</a>
+      <a routerLink="/Account/Register" class="btn btn-outline-primary ms-3">Sign Up</a>
     </ng-container>
     <ng-container *ngIf="(currentUser$ | async)">
       <a routerLink="/CreateNote" class="btn btn-primary ms-3">Add note</a>

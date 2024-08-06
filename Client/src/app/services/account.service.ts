@@ -68,4 +68,28 @@ export class AccountService {
     return this.http.get(this.baseUrl + 'Account/emailexists?email=' + email);
   }
 
+  updateUser(values: any) {
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`);
+
+    return this.http.put(this.baseUrl + 'Account/updateUsername', values, { headers });
+  }
+
+  updatePassword(values: any) {
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`);
+
+    return this.http.put(this.baseUrl + 'Account/updatePassword', values, { headers });
+  }
+
+  deleteAccount() {
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete(this.baseUrl + 'Account/delete', { headers });
+  }
+
 }

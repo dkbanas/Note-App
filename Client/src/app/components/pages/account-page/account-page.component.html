@@ -1,0 +1,75 @@
+<div class="container">
+  <h1 class="mt-2">My Account</h1>
+  <div class="card card-6 mt-4">
+    <div class="card-body">
+      <form [formGroup]="accountForm">
+
+        <div class="form-row d-flex justify-content-between align-items-center">
+          <div class="name">Email</div>
+          <div class="value d-flex justify-content-between align-items-center w-100">
+            <div class="flex-grow-1">
+              {{ accountForm.get('email')?.value }}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row d-flex justify-content-between align-items-center mt-3">
+          <div class="name">Username</div>
+          <div class="value d-flex justify-content-between align-items-center w-100">
+            <div class="flex-grow-1">
+              <ng-container *ngIf="!editMode['username']; else usernameEdit">
+                {{ accountForm.get('username')?.value }}
+              </ng-container>
+              <ng-template #usernameEdit>
+                <input formControlName="username" class="input--style-6" type="text" placeholder="Username">
+              </ng-template>
+            </div>
+            <div class="ms-2">
+              <ng-container *ngIf="!editMode['username']; else usernameButtons">
+                <button type="button" class="btn btn-primary" (click)="enableEdit('username')">Edit</button>
+              </ng-container>
+              <ng-template #usernameButtons>
+                <button type="button" class="btn btn-primary" (click)="saveEdit('username')">Update</button>
+                <button type="button" class="btn btn-secondary" (click)="cancelEdit('username')">Cancel</button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row d-flex justify-content-between align-items-center mt-3">
+          <div class="name">Password</div>
+          <div class="value d-flex justify-content-between align-items-center w-100">
+            <div class="flex-grow-1">
+              <ng-container *ngIf="!editMode['password']; else passwordEdit">
+                ********
+              </ng-container>
+              <ng-template #passwordEdit>
+                <div>
+                  <input formControlName="currentPassword" class="input--style-6" [type]="passwordFieldType" placeholder="Current Password">
+                  <input formControlName="newPassword" class="input--style-6 mt-2" [type]="passwordFieldType" placeholder="New Password">
+                  <button type="button" class="btn btn-outline-secondary mt-2" (click)="togglePasswordVisibility()">
+                    <i [class]="passwordFieldType === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+                  </button>
+                </div>
+              </ng-template>
+            </div>
+            <div class="ms-2">
+              <ng-container *ngIf="!editMode['password']; else passwordButtons">
+                <button type="button" class="btn btn-primary" (click)="enableEdit('password')">Edit</button>
+              </ng-container>
+              <ng-template #passwordButtons>
+                <button type="button" class="btn btn-primary" (click)="saveEdit('password')">Update</button>
+                <button type="button" class="btn btn-secondary" (click)="cancelEdit('password')">Cancel</button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delete Account Section -->
+        <div class="card-footer mt-3">
+          <button class="btn btn-danger btn-lg" type="button" (click)="deleteAccount()">Delete Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

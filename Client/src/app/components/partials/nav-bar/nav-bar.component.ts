@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 import {Observable} from "rxjs";
 import {IUser} from "../../../models/IUser";
 import {AccountService} from "../../../services/account.service";
@@ -12,6 +12,7 @@ import {AsyncPipe, CommonModule} from "@angular/common";
     RouterLink,
     AsyncPipe,
     CommonModule,
+    RouterLinkActive,
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'

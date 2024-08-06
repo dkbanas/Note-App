@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import {INote} from "../../../models/INote";
 import {NotesService} from "../../../services/notes.service";
 import {CommonModule} from "@angular/common";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {NewlineToBrPipe} from "../../../pipes/newline-to-br.pipe";
 
 @Component({
   selector: 'app-note-details-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NewlineToBrPipe, RouterLink],
   templateUrl: './note-details-page.component.html',
   styleUrl: './note-details-page.component.scss'
 })

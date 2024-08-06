@@ -5,12 +5,12 @@
       <small>{{ note.createdDate | date:'fullDate' }}</small>
     </div>
     <div class="mt-3">
-      <p>{{ note.description }}</p>
+      <p [innerHTML]="note.description | newlineToBr"></p>
     </div>
   </div>
 
   <div class="mt-3">
-    <button class="btn btn-outline-primary">Edit</button>
+    <button [routerLink]="['/EditNote', note.id]" class="btn btn-outline-primary">Edit</button>
     <button (click)="deleteNote()" class="btn btn-outline-danger mr-2">Trash</button>
   </div>
 </div>
