@@ -1,7 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {INote} from "../../../models/INote";
 import {NotesService} from "../../../services/notes.service";
-import {NgForOf} from "@angular/common";
+import {CommonModule, NgForOf} from "@angular/common";
 import {NoteItemComponent} from "../../partials/note-item/note-item.component";
 import {noteParams} from "../../../models/noteParams";
 import {PaginationModule} from "ngx-bootstrap/pagination";
@@ -12,7 +12,7 @@ import {PaginationModule} from "ngx-bootstrap/pagination";
   imports: [
     NgForOf,
     NoteItemComponent,
-    PaginationModule
+    PaginationModule,CommonModule,
   ],
   templateUrl: './note-page.component.html',
   styleUrl: './note-page.component.scss'

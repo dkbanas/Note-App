@@ -1,1 +1,52 @@
-<p>home-page works!</p>
+<div class="container mt-5">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Welcome to Note App!</h1>
+    <p class="lead">Your personal tool to stay organized and manage your notes efficiently.</p>
+    <hr class="my-4">
+  </div>
+
+  <div class="row mt-5">
+
+      <div class="col-md-4">
+        <a routerLink="CreateNote">
+          <div class="card h-100" style="cursor: pointer;">
+            <div class="card-body text-center">
+              <i class="bi bi-pencil-square display-4"></i>
+              <h5 class="card-title mt-3">Create Notes</h5>
+              <p class="card-text">Easily add new notes to keep track of your tasks and ideas.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a routerLink="Notes">
+          <div class="card h-100" style="cursor: pointer;">
+            <div class="card-body text-center">
+              <i class="bi bi-card-checklist display-4"></i>
+              <h5 class="card-title mt-3">Manage Notes</h5>
+              <p class="card-text">Edit and organize your notes effortlessly.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-4">
+        <a routerLink="Account">
+          <div class="card h-100"  style="cursor: pointer;">
+            <div class="card-body text-center">
+              <i class="bi bi-person-circle display-4"></i>
+              <h5 class="card-title mt-3">Account</h5>
+              <p class="card-text">Your notes are secure with our advanced authentication system.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+  </div>
+
+  <div class="mt-5 text-center">
+    <h2>User Opinions</h2>
+
+  </div>
+
+</div>

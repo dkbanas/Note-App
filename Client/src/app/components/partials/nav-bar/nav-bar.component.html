@@ -4,8 +4,8 @@
     <nav class="my-2 my-md-0">
       <a class="p-2 text-dark" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
       <a class="p-2 text-dark" routerLink="Note" routerLinkActive="active-link">My notes</a>
-      <a class="p-2 text-dark" href="#" routerLinkActive="active-link">About</a>
-      <a class="p-2 text-dark" routerLink="/Account" routerLinkActive="active-link">Account</a>
+      <a class="p-2 text-dark" routerLink="About" routerLinkActive="active-link">About</a>
+      <a class="p-2 text-dark" routerLink="Account" routerLinkActive="active-link">Account</a>
     </nav>
     <ng-container *ngIf="(currentUser$ | async) === null">
       <a routerLink="/Account/Login" class="btn btn-primary ms-3">Login</a>

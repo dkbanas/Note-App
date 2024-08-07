@@ -1,0 +1,103 @@
+<div class="container mt-5">
+  <div class="card mb-4">
+    <div class="card-body">
+      <h1 class="card-title text-center">About</h1>
+      <p class="card-text text-center">Welcome to the Note App, a CRUD (Create-Read-Update-Delete) web application designed for keeping your notes organized. Developed with cutting-edge technologies including .NET 8, Angular 18.1.2, and Bootstrap, this app ensures a smooth and efficient user experience.</p>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">Key Features</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><i class="bi bi-shield-lock"></i> User Authentication: Secure login and registration using JWT Bearer authentication.</li>
+        <li class="list-group-item"><i class="bi bi-person-badge"></i> Personalized Notes: Each user has a private space to manage their notes.</li>
+        <li class="list-group-item"><i class="bi bi-sort-alpha-down"></i> Sorting and Searching: Easily sort notes by date or title, and use the search function to find specific notes.</li>
+        <li class="list-group-item"><i class="bi bi-pencil-square"></i> CRUD Operations: Create, read, update, and delete notes effortlessly.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">Navigation</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><i class="bi bi-house-door"></i> Home: Welcome page with an overview of the app.</li>
+        <li class="list-group-item"><i class="bi bi-file-earmark-text"></i> My Notes: Access your personal notes (authentication required).</li>
+        <li class="list-group-item"><i class="bi bi-info-circle"></i> About: Information about the project and its underlying technologies.</li>
+        <li class="list-group-item"><i class="bi bi-person"></i> Account: View and update your account details.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">Authentication</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><i class="bi bi-box-arrow-in-right"></i> Login: Access your account by logging in.</li>
+        <li class="list-group-item"><i class="bi bi-person-plus"></i> Sign Up: Register for a new account.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">Technologies Used</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><i class="bi bi-bootstrap"></i> Frontend: Angular 18.1.2, Bootstrap</li>
+        <li class="list-group-item"><i class="bi bi-server"></i> Backend: .NET 8, Entity Framework Core, PostgreSQL</li>
+        <li class="list-group-item"><i class="bi bi-gear"></i> Patterns: Clean Architecture, Repository Pattern</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">NuGet Addons</h2>
+      <ul class="list-group">
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Microsoft.EntityFrameworkCore v8.0.7: Database context management</li>
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Npgsql.EntityFrameworkCore.PostgreSQL v8.0.4: PostgreSQL provider</li>
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Microsoft.EntityFrameworkCore.Design v8.0.7: Migration support</li>
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Microsoft.AspNetCore.Identity.EntityFrameworkCore v8.0.7: Identity management</li>
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Microsoft.IdentityModel.Tokens v8.0.1: Token handling</li>
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Microsoft.IdentityModel.JsonWebTokens v8.0.1: JWT support</li>
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Microsoft.AspNetCore.Authentication.JwtBearer v8.0.7: JWT Bearer authentication</li>
+        <li class="list-group-item"><i class="bi bi-box-seam"></i> Microsoft.Extensions.Identity.Stores v8.0.7: Core identity stores</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">Instructions</h2>
+      <p>Using the App:</p>
+      <ol class="list-group list-group-numbered">
+        <li class="list-group-item"><strong>Navigation:</strong> Use the top navbar to move between Home, My Notes, About, and Account pages.</li>
+        <li class="list-group-item"><strong>Authentication:</strong>
+          <ul class="list-group">
+            <li class="list-group-item">If not logged in, use the "Login" button to access your account or "Sign Up" to register.</li>
+            <li class="list-group-item">If logged in, use the "Add Note" button to create a new note or "Logout" to sign out.</li>
+          </ul>
+        </li>
+        <li class="list-group-item"><strong>My Notes:</strong>
+          <ul class="list-group">
+            <li class="list-group-item">View all your notes in the "My Notes" section.</li>
+            <li class="list-group-item">Sort notes by date or title for easier management.</li>
+            <li class="list-group-item">Use the search bar to quickly find specific notes.</li>
+            <li class="list-group-item">Click on a note to view its details, edit, or delete it.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-body">
+      <h2 class="card-title">Frequently Asked Questions (FAQ)</h2>
+      <app-accordion [items]="faqItems"></app-accordion>
+    </div>
+  </div>
+
+  <p class="mt-4 text-center">By following this guide, you should have a comprehensive understanding of how to navigate and utilize the Note App effectively. If you have any further questions, please refer to the FAQ section or contact our support team.</p>
+</div>
+

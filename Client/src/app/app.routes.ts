@@ -8,6 +8,7 @@ import {authGuard} from "./guards/auth.guard";
 import {NoteCreatePageComponent} from "./components/pages/note-create-page/note-create-page.component";
 import {NoteEditPageComponent} from "./components/pages/note-edit-page/note-edit-page.component";
 import {AccountPageComponent} from "./components/pages/account-page/account-page.component";
+import {AboutPageComponent} from "./components/pages/about-page/about-page.component";
 
 export const routes: Routes = [
   {path:'', component:HomePageComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
   {path:'Account',component:AccountPageComponent},
   {path:'Account/Login',component:LoginPageComponent},
   {path:'Account/Register',component:RegisterPageComponent},
+  {path:'About',component:AboutPageComponent},
   {path:'**', redirectTo:'',pathMatch:'full'},
 ];

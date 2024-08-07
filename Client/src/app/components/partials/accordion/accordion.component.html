@@ -1,0 +1,16 @@
+<div class="accordion" id="accordionExample">
+  <ng-container *ngFor="let item of items; let i = index">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="heading{{i}}">
+        <button class="accordion-button" [class.collapsed]="!item.open" (click)="toggle(i)">
+          {{ item.question }}
+        </button>
+      </h2>
+      <div id="collapse{{i}}" class="accordion-collapse collapse" [class.show]="item.open">
+        <div class="accordion-body">
+          {{ item.answer }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
