@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {interval, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-carousel',
@@ -10,5 +9,5 @@ import {interval, Subscription} from "rxjs";
   styleUrl: './carousel.component.scss'
 })
 export class CarouselComponent {
-
+  @Input() userOpinions: { title: string, text: string }[] = [];
 }

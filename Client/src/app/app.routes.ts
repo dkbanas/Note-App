@@ -16,7 +16,7 @@ export const routes: Routes = [
   {path:'Note/:id', component:NoteDetailsPageComponent,canActivate:[authGuard]},
   {path:'CreateNote', component: NoteCreatePageComponent },
   { path: 'EditNote/:id', component: NoteEditPageComponent },
-  {path:'Account',component:AccountPageComponent},
+  {path:'Account',component:AccountPageComponent,canActivate:[authGuard]},
   {path:'Account/Login',component:LoginPageComponent},
   {path:'Account/Register',component:RegisterPageComponent},
   {path:'About',component:AboutPageComponent},

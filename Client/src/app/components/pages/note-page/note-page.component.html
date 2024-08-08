@@ -1,4 +1,13 @@
 <div class="container">
+  <div *ngIf="totalCount == 0" class="text-center mt-4">
+    <img src="note-empty-2.png" alt="Empty state image" class="img-fluid">
+    <h2 class="mb-3">No Saved Notes</h2>
+    <p class="text-muted mb-4">Looks like you haven't added any notes yet. Click the button below to add the first one.</p>
+    <a href="CreateNote" class="btn btn-primary d-inline-flex align-items-center">
+      <i class="bi bi-plus-circle me-2"></i> Add Your First Note
+    </a>
+  </div>
+
   <div *ngIf="totalCount > 0">
     <div class="d-flex justify-content-between align-items-center my-4">
       <header class="flex-shrink-1">

@@ -17,6 +17,7 @@ import {NgIf} from "@angular/common";
 export class RegisterPageComponent {
   registerForm!: FormGroup;
   passwordFieldType: string = 'password';
+  serverError: string | null = null;
   constructor(private fb: FormBuilder, private router:Router, private accountService:AccountService) {}
 
   ngOnInit(){
@@ -36,9 +37,19 @@ export class RegisterPageComponent {
   }
 
   onSubmit() {
+    if (this.registerForm.invalid) return;
+
     this.accountService.register(this.registerForm.value).subscribe({
-      next: () => { this.router.navigateByUrl('/Note'); },
-      error: (err) => { console.log(err); }
+      next: () => {
+        this.router.navigateByUrl('/Note');
+      },
+      error: (err) => {
+        if (err.error?.errors?.length) {
+          this.serverError = err.error.errors[0];
+        } else {
+          this.serverError = 'An error occurred. Please try again later.';
+        }
+      }
     });
   }
 

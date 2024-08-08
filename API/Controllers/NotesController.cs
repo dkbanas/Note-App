@@ -23,22 +23,22 @@ namespace API.Controllers
         }
         
         [HttpGet]
-        public async Task<ActionResult<Pagination<Core.Entities.Note>>> GetNotes(int pageIndex = 1, int pageSize = 10, string sort = null, string search = null)
+        public async Task<ActionResult<Pagination<Note>>> GetNotes(int pageIndex = 1, int pageSize = 10, string sort = null, string search = null)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
-            var notes = await _repo.GetAllNotesAsync(pageIndex, pageSize, email, sort, search);
-            var totalItems = await _repo.CountAsync(email);
+            
+                var notes = await _repo.GetAllNotesAsync(pageIndex, pageSize, email, sort, search);
+                var totalItems = await _repo.CountAsync(email);
 
-            if (notes == null || !notes.Any()) return NotFound(new ApiResponse(404));
+                var paginationData = new Pagination<Core.Entities.Note>(
+                    pageIndex,
+                    pageSize,
+                    totalItems,
+                    notes ?? new List<Core.Entities.Note>()
+                );
 
-            var paginationData = new Pagination<Core.Entities.Note>(
-                pageIndex,
-                pageSize,
-                totalItems,
-                notes
-            );
-
-            return Ok(paginationData);
+                return Ok(paginationData);
+            
         }
     
         [HttpGet("{id}")]
