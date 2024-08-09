@@ -29,7 +29,7 @@
                 <button type="button" class="btn btn-primary" (click)="enableEdit('username')">Edit</button>
               </ng-container>
               <ng-template #usernameButtons>
-                <button type="button" class="btn btn-primary" (click)="saveEdit('username')">Update</button>
+                <button type="button" class="btn btn-primary" (click)="saveEdit('username')" [disabled]="accountForm.get('username')?.value.trim() === ''">Update</button>
                 <button type="button" class="btn btn-secondary" (click)="cancelEdit('username')">Cancel</button>
               </ng-template>
             </div>
@@ -50,6 +50,9 @@
                   <button type="button" class="btn btn-outline-secondary mt-2" (click)="togglePasswordVisibility()">
                     <i [class]="passwordFieldType === 'password' ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
                   </button>
+                  <div class="mt-2 text-muted">
+                    <span class="text-danger" *ngIf="accountForm.get('newPassword')?.invalid && accountForm.get('newPassword')?.touched && accountForm.get('newPassword')?.errors?.['pattern']">Password must be min 6 characters long, include at least one number, one lowercase letter, one uppercase letter, and one special character.</span>
+                  </div>
                 </div>
               </ng-template>
             </div>
@@ -58,14 +61,13 @@
                 <button type="button" class="btn btn-primary" (click)="enableEdit('password')">Edit</button>
               </ng-container>
               <ng-template #passwordButtons>
-                <button type="button" class="btn btn-primary" (click)="saveEdit('password')">Update</button>
+                <button type="button" class="btn btn-primary" (click)="saveEdit('password')" [disabled]="accountForm.get('currentPassword')?.value.trim() === '' || accountForm.get('newPassword')?.value.trim() === ''">Update</button>
                 <button type="button" class="btn btn-secondary" (click)="cancelEdit('password')">Cancel</button>
               </ng-template>
             </div>
           </div>
         </div>
 
-        <!-- Delete Account Section -->
         <div class="card-footer mt-3">
           <button class="btn btn-danger btn-lg" type="button" (click)="deleteAccount()">Delete Account</button>
         </div>

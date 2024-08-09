@@ -10,4 +10,5 @@ import {CommonModule} from "@angular/common";
 })
 export class CarouselComponent {
   @Input() userOpinions: { title: string, text: string }[] = [];
+
 }

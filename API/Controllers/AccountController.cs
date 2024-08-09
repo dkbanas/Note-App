@@ -91,7 +91,7 @@ public class AccountController : ControllerBase
     
     [Authorize]
     [HttpPut("updateUsername")]
-    public async Task<ActionResult> UpdateUser([FromBody] UpdateUserDto updateUserDto)
+    public async Task<ActionResult> UpdateUser( UpdateUserDto updateUserDto)
     {
         var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
         var user = await _userManager.FindByEmailAsync(email);
@@ -108,7 +108,7 @@ public class AccountController : ControllerBase
 
     [Authorize]
     [HttpPut("updatePassword")]
-    public async Task<ActionResult> UpdatePassword([FromBody] UpdatePasswordDto updatePasswordDto)
+    public async Task<ActionResult> UpdatePassword(UpdatePasswordDto updatePasswordDto)
     {
         var email = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
         var user = await _userManager.FindByEmailAsync(email);

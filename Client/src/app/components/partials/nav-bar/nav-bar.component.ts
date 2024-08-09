@@ -19,11 +19,18 @@ import {AsyncPipe, CommonModule} from "@angular/common";
 })
 export class NavBarComponent {
   currentUser$!: Observable<IUser | null>;
+  navbarOpen = false;
   constructor(private accountService: AccountService) {
   }
 
   ngOnInit(){
     this.currentUser$ = this.accountService.currentUser$;
+  }
+
+
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 
   logout(){

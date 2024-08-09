@@ -55,7 +55,7 @@ namespace API.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Core.Entities.Note>> CreateNote([FromBody] NoteForCreation noteDto)
+        public async Task<ActionResult<Core.Entities.Note>> CreateNote(NoteForCreation noteDto)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
 
@@ -89,7 +89,7 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult> UpdateNoteById(int id, [FromBody] NoteForCreation noteDto)
+        public async Task<ActionResult> UpdateNoteById(int id, NoteForCreation noteDto)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
 

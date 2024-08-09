@@ -51,7 +51,7 @@ export class AccountPageComponent {
       email: new FormControl({ value: '', disabled: true }, [Validators.required, Validators.email]),
       username: new FormControl({ value: '', disabled: true }, [Validators.required]),
       currentPassword: new FormControl('', [Validators.required]),
-      newPassword: new FormControl('', [Validators.required])
+      newPassword: new FormControl('', [Validators.required,Validators.pattern('(?=^.{6,10}$)(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;\'?/&gt;.&lt;,])(?!.*\\\\s).*$')])
     });
   }
 

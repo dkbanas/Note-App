@@ -47,11 +47,14 @@ public class NoteRepository : INoteRepository
             case "alphabetically-reverse":
                 query = query.OrderByDescending(n => n.Title);
                 break;
+            case "date":
+                query = query.OrderByDescending(n => n.CreatedDate); 
+                break;
             case "date-reverse":
-                query = query.OrderByDescending(n => n.CreatedDate);
+                query = query.OrderBy(n => n.CreatedDate); 
                 break;
             default:
-                query = query.OrderBy(n => n.CreatedDate);
+                query = query.OrderByDescending(n => n.CreatedDate); 
                 break;
         }
 

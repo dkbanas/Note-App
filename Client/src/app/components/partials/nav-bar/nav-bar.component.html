@@ -1,12 +1,19 @@
-<div class="d-flex align-items-center p-3 bg-white border-bottom box-shadow">
+<div class="navbar navbar-expand-md navbar-light bg-white border-bottom box-shadow p-3">
   <h5 class="my-0 font-weight-normal">Note</h5>
-  <div class="d-flex align-items-center ms-auto">
-    <nav class="my-2 my-md-0">
-      <a class="p-2 text-dark" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-      <a class="p-2 text-dark" routerLink="Note" routerLinkActive="active-link">My notes</a>
-      <a class="p-2 text-dark" routerLink="About" routerLinkActive="active-link">About</a>
-      <a class="p-2 text-dark" routerLink="Account" routerLinkActive="active-link">Account</a>
+
+  <button class="navbar-toggler ms-auto" type="button" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div [ngClass]="{'collapse': !navbarOpen, 'navbar-collapse': true}" id="navbarNav">
+    <nav class="navbar-nav ms-auto my-2 my-md-0">
+      <a class="nav-item nav-link p-2 text-dark" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a class="nav-item nav-link p-2 text-dark" routerLink="Note" routerLinkActive="active-link">My notes</a>
+      <a class="nav-item nav-link p-2 text-dark" routerLink="About" routerLinkActive="active-link">About</a>
+      <a class="nav-item nav-link p-2 text-dark" routerLink="Account" routerLinkActive="active-link">Account</a>
     </nav>
+
+    <!-- Auth Buttons -->
     <ng-container *ngIf="(currentUser$ | async) === null">
       <a routerLink="/Account/Login" class="btn btn-primary ms-3">Login</a>
       <a routerLink="/Account/Register" class="btn btn-outline-primary ms-3">Sign Up</a>

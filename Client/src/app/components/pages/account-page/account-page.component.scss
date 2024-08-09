@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   align-items: flex-start;
   padding: 2rem;
-  border-bottom: 1px solid #e5e5e5
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .form-row .name {
@@ -13,22 +13,23 @@
 }
 
 .form-row .value {
-  width: calc(100% - 15rem)
+  width: calc(100% - 15rem);
 }
 
-input,textarea {
+input, textarea {
   width: 100%;
 }
 
 textarea {
-  resize: none
+  resize: none;
 }
 
-.input--style-6,.textarea--style-6 {
+.input--style-6, .textarea--style-6 {
   line-height: 2.5rem;
+  width:100%;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   padding: 0 1rem;
 }
 
@@ -36,11 +37,9 @@ textarea.textarea--style-6 {
   height: 40rem;
 }
 
-
-
-.input--style-6:focus,.textarea--style-6:focus {
-  box-shadow: 0 1px 5px 0 rgba(0,0,0,.15);
-  transform: translateY(-3px)
+.input--style-6:focus, .textarea--style-6:focus {
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
 }
 
 .card-6 .card-footer {
@@ -48,4 +47,52 @@ textarea.textarea--style-6 {
   border-top: none;
   padding: 1rem 2rem 2rem 2rem;
 }
+
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    padding: 1rem;
+    align-items: flex-start;
+  }
+
+  .form-row .name {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-row .value {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .input--style-6, .textarea--style-6 {
+    line-height: 2rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+  }
+
+  textarea.textarea--style-6 {
+    height: 20rem;
+  }
+
+  .ms-2 {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn-lg {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .card-footer {
+    padding: 1rem;
+  }
+}
+
 

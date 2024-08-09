@@ -14,7 +14,6 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
       tap({
         next: (event) => {
-          // console.log('Received event:', event);
           if (event.type === HttpEventType.Response) {
             pendingRequests--;
             if (pendingRequests === 0) {
@@ -23,7 +22,6 @@ export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
           }
         },
         error: (error) => {
-          // console.error('Error occurred:', error);
           pendingRequests--;
           if (pendingRequests === 0) {
             loadingService.hideLoading();
