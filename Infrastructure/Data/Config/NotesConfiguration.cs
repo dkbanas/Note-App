@@ -10,7 +10,6 @@ public class NotesConfiguration : IEntityTypeConfiguration<Note>
     {
         builder.Property(p => p.Id).IsRequired();
         builder.Property(p => p.Title).IsRequired().HasMaxLength(30);
-        builder.Property(p => p.Description).IsRequired().HasMaxLength(100);
         builder.Property(p => p.UserEmail).IsRequired();
     }
 }
