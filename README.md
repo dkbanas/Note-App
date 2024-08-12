@@ -30,8 +30,11 @@ Note App is a simple CRUD (Create-Read-Update-Delete) web application designed t
 ## 🛠️ How to run
 - 1.Clone repository
 - 2.Create NoteDB and Note_DB database in pgadmin4 and import sql files from Infrastructure folder.
-- 3.Click run in your IDE to run backend.
-- 4.Right click in the Client folder, open in terminal and write
+- 3.Open appsettings.Development.json file inside API folder and fill username and password for database
+- 4.Click run in your IDE to run backend.
+- 5.Right click in the Client folder, open in terminal and write
 ```CMD
 >>>PS D:\Note\Client> ng serve
 ```
+
+
