@@ -4,7 +4,6 @@ using Core.Entities;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Data;
-
 public class  NoteContext : DbContext
 {
     protected NoteContext()

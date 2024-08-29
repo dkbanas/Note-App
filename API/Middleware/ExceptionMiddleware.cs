@@ -3,7 +3,6 @@ using System.Text.Json;
 using API.Errors;
 
 namespace API.Middleware;
-
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;

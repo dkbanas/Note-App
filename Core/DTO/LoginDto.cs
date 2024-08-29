@@ -1,5 +1,4 @@
-﻿namespace API.DTO;
-
+﻿namespace Core.DTO;
 public class LoginDto
 {
     public string Email { get; set; }

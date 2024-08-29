@@ -8,7 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 namespace Infrastructure.Services;
-
 public class TokenService : ITokenService
 {
     private readonly IConfiguration _config;

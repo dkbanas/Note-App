@@ -1,5 +1,4 @@
-﻿namespace API.DTO;
-
+﻿namespace Core.DTO;
 public class NoteForCreation
 {
     public string Title { get; set; }

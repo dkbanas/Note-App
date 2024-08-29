@@ -3,7 +3,6 @@ using Core.Entities;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Data;
-
 public class NoteContextSeed
 {
     public static async Task SeedAsync(NoteContext noteContext, ILoggerFactory loggerFactory)

@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
-using API.DTO;
 using API.Errors;
+using Core.DTO;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

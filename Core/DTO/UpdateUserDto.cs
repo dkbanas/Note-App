@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.DTO;
-
+namespace Core.DTO;
 public class UpdateUserDto
 {
     [Required]

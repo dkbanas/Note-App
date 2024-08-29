@@ -4,6 +4,7 @@ using API.Helpers;
 using API.Middleware;
 using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Handlers.NoteHandlers;
 using Infrastructure.Identity;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -41,10 +42,13 @@ builder.Services.AddDbContext<AppIdentityDbContext>(options =>
 });
 
 
-builder.Services.AddScoped<INoteRepository, NoteRepository>();
+// builder.Services.AddScoped<INoteRepository, NoteRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddSingleton<System.TimeProvider>(System.TimeProvider.System);
 builder.Services.AddScoped<ITokenService, TokenService>();
+
+builder.Services.AddMediatR(config => 
+    config.RegisterServicesFromAssembly(typeof(GetAllNotesHandler).Assembly));
 //Identity
 var identityBuilder = builder.Services.AddIdentityCore<IdentityUser>(options =>
 {
