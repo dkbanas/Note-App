@@ -18,10 +18,6 @@ public class GetNoteByIdHandler : IRequestHandler<GetNoteByIdQuery, Note>
     public async Task<Note> Handle(GetNoteByIdQuery request, CancellationToken cancellationToken)
     {
         var note = await _noteContext.Notes.FirstOrDefaultAsync(n => n.Id == request.id && n.UserEmail == request.userEmail);
-        if (note == null)
-        {
-            throw new KeyNotFoundException($"Note with id {request.id} was not found for user {request.userEmail}.");
-        }
         return note;
     }
 }

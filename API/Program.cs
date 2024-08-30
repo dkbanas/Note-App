@@ -47,8 +47,13 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddSingleton<System.TimeProvider>(System.TimeProvider.System);
 builder.Services.AddScoped<ITokenService, TokenService>();
 
-builder.Services.AddMediatR(config => 
-    config.RegisterServicesFromAssembly(typeof(GetAllNotesHandler).Assembly));
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssembly(typeof(CreateNoteHandler).Assembly);
+    config.RegisterServicesFromAssembly(typeof(GetAllNotesHandler).Assembly);
+    config.RegisterServicesFromAssembly(typeof(UpdateNoteHandler).Assembly);
+});
+
 //Identity
 var identityBuilder = builder.Services.AddIdentityCore<IdentityUser>(options =>
 {
@@ -164,3 +169,4 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+public partial class Program { }

@@ -56,7 +56,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Core.Entities.Note>> CreateNote(NoteForCreation noteDto)
         {
@@ -87,20 +87,26 @@ namespace API.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult> UpdateNoteById(int id, NoteForCreation noteDto)
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
             var existingNote = await _mediator.Send(new GetNoteByIdQuery { id = id, userEmail = email });
             if (existingNote == null) return NotFound(new ApiResponse(404, "Note not found"));
             
-            existingNote.Title = noteDto.Title;
-            existingNote.Description = noteDto.Description;
+            var updateCommand = new UpdateNoteCommand 
+            { 
+                note = new Note 
+                { 
+                    Id = id, 
+                    Title = noteDto.Title, 
+                    Description = noteDto.Description 
+                }, 
+                userEmail = email 
+            };
             
-            var updatedNote = await _mediator.Send(new UpdateNoteCommand { note = existingNote });
-            if (updatedNote == null) return BadRequest(new ApiResponse(400, "Problem updating note"));
-            return Ok(updatedNote);
-            
+            var updateResponse = await _mediator.Send(updateCommand);
+            if (!updateResponse.Flag) return BadRequest(new ApiResponse(400, updateResponse.Message));
+            return Ok(updateResponse);
         }
     }
 }
