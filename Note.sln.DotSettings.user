@@ -1,13 +1,4 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ADbContext_002Ecs_002Fl_003AC_0021_003FUsers_003Fdkban_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003F3bd4df5aff92cabbc4d630be64227073db1b8539b3a1e47786b4b189d7cdb7_003FDbContext_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0b6c9284_002D0cca_002D42f8_002Da3c4_002D98316078b350/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UpdateNoteById_ExistingNote_ReturnsOk" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::D85771EC-0777-4EE3-B6F3-6868EE861908::net8.0::IntegrationTests.NotesControllerTests.UpdateNoteById_ValidNote_ReturnsOK&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::D85771EC-0777-4EE3-B6F3-6868EE861908::net8.0::IntegrationTests.NotesControllerTests.DeleteNoteById_ValidNote_ReturnsOK&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d6fa4497_002Dc076_002D49e6_002D86a6_002Dffc574f3f331/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetNotes_Unauthorized_ReturnsUnauthorized" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::D85771EC-0777-4EE3-B6F3-6868EE861908::net8.0::IntegrationTests.NotesControllerTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
+	
+	</wpf:ResourceDictionary>

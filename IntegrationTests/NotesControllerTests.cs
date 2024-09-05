@@ -1,11 +1,6 @@
 ﻿using System.Text;
-using Core.Entities;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
-using Xunit;
-using FluentAssertions;
-using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authorization.Policy;
 using System.Text.Json;
 namespace IntegrationTests;
